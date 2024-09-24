@@ -25,3 +25,21 @@ class LinkList:
             print(currentNode.data)
             currentNode = currentNode.next
     
+    def search_card(self, atm_card):
+        currentNode = self.head
+        while currentNode:
+            if currentNode.data.atm_card == atm_card:
+                return (True)
+            currentNode = currentNode.next
+        return (False)
+    
+    def check_password(self, atm_card, password):
+        currentNode = self.head
+        while currentNode:
+            if currentNode.data.atm_card == atm_card:
+                if currentNode.data.password == password:
+                    return (True)
+                else:
+                    return (False)
+            currentNode = currentNode.next
+        return (False)
