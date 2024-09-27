@@ -141,9 +141,10 @@ class Menu:
     def __init__(self):
         print("-----MENU-----")
         print("[1] [green]check info[/green]")
-        print("[2] deposit")
+        print("[2] [yellow]deposit[/yellow]")
         print("[3] [red]withdraw[/red]")
         print("[4] [blue]Transfer[/blue]")
+        print("[0] Exit")
         print("---------------")
 
 def check_type_amount(content):

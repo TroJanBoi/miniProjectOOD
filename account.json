@@ -4,17 +4,15 @@
         "password": "1",
         "name": "Anong Pansak",
         "age": 30,
-        "total": 12000,
-        "slips": [
-           
-                ]
+        "total": 12100,
+        "slips": []
     },
     {
         "atm_card": "66015147",
         "password": "2",
         "name": "Somchai Intanon",
         "age": 45,
-        "total": 9200,
+        "total": 9100,
         "slips": [
             {
                 "date": "02-09-2023",
@@ -25,16 +23,6 @@
                 "date": "05-09-2023",
                 "amount": 2000,
                 "transaction": "withdraw"
-            },
-            {
-                "date": "2024-09-27",
-                "amount": 100,
-                "transaction": "received"
-            },
-            {
-                "date": "2024-09-27",
-                "amount": 100,
-                "transaction": "received"
             }
         ]
     },
