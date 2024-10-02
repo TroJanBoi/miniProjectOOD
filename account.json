@@ -4,15 +4,17 @@
         "password": "1",
         "name": "Anong Pansak",
         "age": 30,
-        "total": 12100,
-        "slips": []
+        "total": 12000,
+        "slips": [
+            
+        ]
     },
     {
         "atm_card": "66015147",
         "password": "2",
         "name": "Somchai Intanon",
         "age": 45,
-        "total": 9100,
+        "total": 9600,
         "slips": [
             {
                 "date": "02-09-2023",

@@ -43,3 +43,7 @@ class LinkList:
                     return (False)
             currentNode = currentNode.next
         return (False)
+
+
+
+

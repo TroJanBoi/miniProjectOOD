@@ -6,25 +6,30 @@ import json
 from rich import print
 from LinkList import LinkList, Node
 from datetime import date
+from collections import deque
 
-def update_json_file(linklist, filename='account.json'):
-    data = []
-    current = linklist.head
-    while current:
-        account = current.data
-        account_dict = {
-            "atm_card": account.atm_card,
-            "password": account.password,
-            "name": account.name,
-            "age": account.age,
-            "total": account.total,
-            "slips": [{"date": str(slip.date), "amount": slip.amount, "transaction": slip.transaction} for slip in account.slips]
-        }
-        data.append(account_dict)
-        current = current.next
-    
-    with open(filename, 'w') as file:
-        json.dump(data, file, indent=4)
+class JSON:
+    def __init__(self, filename='account.json'):
+        self.filename = filename
+
+    def update_json_file(self, linklist):
+        data = []
+        current = linklist.head
+        while current:
+            account = current.data
+            account_dict = {
+                "atm_card": account.atm_card,
+                "password": account.password,
+                "name": account.name,
+                "age": account.age,
+                "total": account.total,
+                "slips": [{"date": str(slip.date), "amount": slip.amount, "transaction": slip.transaction} for slip in account.slips]
+            }
+            data.append(account_dict)
+            current = current.next
+        
+        with open(self.filename, 'w') as file:
+            json.dump(data, file, indent=4)
 
 class Slips:
     def __init__(self, date, amount, transaction):
@@ -34,6 +39,7 @@ class Slips:
 
     def __repr__(self):
         return f"Slips(date='{self.date}', amount={self.amount}, transaction={self.transaction}"
+
 class Transaction:
     def __init__(self, linklist):
         self.linklist = linklist
@@ -54,7 +60,7 @@ class Transaction:
                 currentNode.data.total += amount
                 currentNode.data.slips.append(Slips(date=date.today(), amount=amount, transaction="deposit"))
                 print(f"[green]Deposit successfull! New Balance: {currentNode.data.total}[/green]")
-                update_json_file(self.linklist)
+                update_json_file.update_json_file(self.linklist)
                 return
             currentNode = currentNode.next
         print("[red]ATM card not found![/red]")
@@ -68,7 +74,7 @@ class Transaction:
                         currentNode.data.total -= amount
                         currentNode.data.slips.append(Slips(date=date.today(), amount=amount, transaction="withdraw"))
                         print(f"[green]Withdraw successfull! New Balance: {currentNode.data.total}[/green]")
-                        update_json_file(self.linklist)
+                        update_json_file.update_json_file(self.linklist)
                         return
                     else:
                         print(f"[red]Your account has insufficient money.[/red]")
@@ -103,13 +109,13 @@ class Transaction:
                 if currentNode.data.total >= amount:
                     currentNode.data.total -= amount
                     currentNode.data.slips.append(Slips(date=date.today(), amount=amount, transaction="transfer"))
-                    update_json_file(self.linklist)
+                    update_json_file.update_json_file(self.linklist)
 
                     second_currentNode = self.linklist.head
                     while second_currentNode:
                         if second_currentNode.data.atm_card == data:
                             second_currentNode.data.total += amount
-                            update_json_file(self.linklist)
+                            update_json_file.update_json_file(self.linklist)
                             print("[green]transfer sucess![/green]")
                             return
                         second_currentNode = second_currentNode.next
@@ -118,6 +124,7 @@ class Transaction:
                     return
             currentNode = currentNode.next
         print("[red]ATM card not found-1![/red]")
+
 class ATMCard:
     def __init__(self, atm_card, password, name, age, total, slips):
         self.atm_card = atm_card
@@ -176,6 +183,8 @@ for i in data:
 
 if __name__ == "__main__":
     trans = Transaction(llst)
+    update_json_file = JSON()
+
     while True:
         data = input("ATM Card : ")
         if llst.search_card(data):
