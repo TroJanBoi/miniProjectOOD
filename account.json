@@ -4,9 +4,23 @@
         "password": "1",
         "name": "Anong Pansak",
         "age": 30,
-        "total": 12000,
+        "total": 0,
         "slips": [
-            
+            {
+                "date": "2024-10-04",
+                "amount": 100,
+                "transaction": "Transfer Out"
+            },
+            {
+                "date": "2024-10-04",
+                "amount": 300,
+                "transaction": "transfer"
+            },
+            {
+                "date": "2024-10-04",
+                "amount": 600,
+                "transaction": "transfer"
+            }
         ]
     },
     {
@@ -14,7 +28,7 @@
         "password": "2",
         "name": "Somchai Intanon",
         "age": 45,
-        "total": 9600,
+        "total": 10600,
         "slips": [
             {
                 "date": "02-09-2023",
